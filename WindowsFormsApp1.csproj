@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DirectedE.cs" />
     <Compile Include="JetCoaster.cs" />
     <Compile Include="kuriage.cs" />
     <Compile Include="Form1.cs">

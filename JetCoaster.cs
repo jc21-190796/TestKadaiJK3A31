@@ -16,7 +16,7 @@ namespace WindowsFormsApp1
             int count=1;
             int result=0;
 
-            for (int j=0; j<g.Length; j++)
+            for (int j=0; r!=0&&j<g.Length; j++)
             {
                 gPeek = g[j];
                 Console.WriteLine(count+":"+gPeek + ":" + result);
