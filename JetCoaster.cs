@@ -24,52 +24,60 @@ namespace WindowsFormsApp1
                 gSet[i] = g[i];
             }
 
-            for (int count = 1; r!=0&&count<=r;)//回数が0出ないとき&既定の回数に達するまで回す
+            if (g.Length == 0)
             {
-                //Console.WriteLine("count:" + count);
-                gPeek = gSet[num];
-                Console.WriteLine(count+":"+gPeek + ":" + result);
-                maxRide -= gPeek;//残席数を計算する
-
-                if (maxRide >= 0) //乗れるならまだ乗せる
+                return result;
+            }
+            else
+            {
+                for (int count = 1; r != 0 && count <= r;)//回数が0出ないとき&既定の回数に達するまで回す
                 {
-                    result += gPeek;//総数に今のグループ人数を加算
-                    if (num == gSet.Length - 1)//列の最後の人の時列が元に戻る
+
+                    //Console.WriteLine("count:" + count);
+                    gPeek = gSet[num];
+                    Console.WriteLine(count + ":" + gPeek + ":" + result);
+                    maxRide -= gPeek;//残席数を計算する
+
+                    if (maxRide >= 0) //乗れるならまだ乗せる
                     {
-                        num = 0;
+                        result += gPeek;//総数に今のグループ人数を加算
+                        if (num == gSet.Length - 1)//列の最後の人の時列が元に戻る
+                        {
+                            num = 0;
+                            count++;
+                            //Console.WriteLine("count:" + count);
+                            continue;
+                        }
+                        escape[num] = gSet[num];
+                        Console.WriteLine("escape[" + num + "]:" + escape[num]);
+                        num++;
+                    }
+                    else
+                    {
+                        maxRide = k;//席数を初期化
+
+                        for (int h = 0; h < gSet.Length; h++)
+                        {
+                            if (num < gSet.Length)
+                            {
+                                gSet[h] = gSet[num];
+                                num++;
+                                Console.WriteLine("g[" + h + "]:" + g[h]);
+
+                            }
+                            else
+                            {
+                                gSet[h] = escape[num2];
+                                Console.WriteLine("g[" + h + "]:" + g[h]);
+                                num2++;
+                            }
+                        }
                         count++;
                         //Console.WriteLine("count:" + count);
-                        continue;
+                        num = 0;
+                        num2 = 0;
                     }
-                    escape[num] = gSet[num];
-                    Console.WriteLine("escape["+num+"]:" + escape[num]);
-                    num++;
                 }
-                else
-                {
-                    maxRide = k;//席数を初期化
-                    
-                    for(int h=0; h<gSet.Length; h++)
-                    {
-                        if (num < gSet.Length)
-                        {
-                            gSet[h] = gSet[num];
-                            num++;
-                            Console.WriteLine("g["+h+"]:" + g[h]);
-
-                        }
-                        else
-                        {
-                            gSet[h] = escape[num2];
-                            Console.WriteLine("g["+ h+"]:" + g[h]);
-                            num2++;
-                        }
-                    }
-                    count++;
-                    //Console.WriteLine("count:" + count);
-                    num = 0;
-                    num2 = 0;
-                }    
             }
             Console.WriteLine("result:" + result);
             return result;
