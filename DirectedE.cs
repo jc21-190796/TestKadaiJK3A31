@@ -26,7 +26,7 @@ namespace WindowsFormsApp1
 
             int top = 1;
             int last = m;
-            int x = 1;
+            int x = dep;
 
             while (last >= 1)
             {
